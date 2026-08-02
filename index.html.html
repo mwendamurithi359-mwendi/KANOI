@@ -1,0 +1,2166 @@
+<!doctype html>
+<!-- saved from url=(0173)file:///C:/Users/USER/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/7FF498FC7403E9C589150579899C2FD6BAA1DA4A/transfers/2026-31/index.html -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>For Kanoi ❤️</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #050510;
+        color: #f0e6ff;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      /* ========== STARS BACKGROUND ========== */
+      .stars-container {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle var(--duration) ease-in-out infinite;
+        opacity: 0;
+      }
+
+      @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: var(--opacity); transform: scale(1); }
+      }
+
+      /* ========== LOCK SCREEN ========== */
+      #lock-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: radial-gradient(ellipse at center, #1a0a2e 0%, #050510 70%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1.2s ease, visibility 1.2s;
+        padding: 20px;
+      }
+
+      #lock-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .lock-icon {
+        width: 90px;
+        height: 90px;
+        border: 3px solid #e0b0ff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        box-shadow: 0 0 30px rgba(224, 176, 255, 0.3);
+        animation: pulse-glow 2.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(224, 176, 255, 0.25); }
+        50% { box-shadow: 0 0 45px rgba(224, 176, 255, 0.55); }
+      }
+
+      .lock-icon svg {
+        width: 40px;
+        height: 40px;
+        fill: #e0b0ff;
+      }
+
+      .lock-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.7rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #e0b0ff;
+        margin-bottom: 10px;
+      }
+
+      .lock-subtitle {
+        font-size: 0.95rem;
+        color: #b8a0d0;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      /* Big clear start button */
+      #start-btn {
+        background: linear-gradient(135deg, #c070e0, #ff80b0);
+        color: white;
+        border: none;
+        padding: 18px 42px;
+        font-size: 1.15rem;
+        font-family: 'Playfair Display', serif;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 8px 30px rgba(200, 100, 200, 0.45);
+        letter-spacing: 1px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      #start-btn:active {
+        transform: scale(0.97);
+      }
+
+      .progress-area {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .progress-area.active {
+        display: flex;
+      }
+
+      .progress-ring {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      .progress-ring svg {
+        transform: rotate(-90deg);
+      }
+
+      .progress-ring circle {
+        fill: none;
+        stroke-width: 3.5;
+      }
+
+      .progress-bg {
+        stroke: rgba(224, 176, 255, 0.15);
+      }
+
+      .progress-bar {
+        stroke: #e0b0ff;
+        stroke-linecap: round;
+        stroke-dasharray: 201;
+        stroke-dashoffset: 201;
+        transition: stroke-dashoffset 0.3s linear;
+      }
+
+      .timer-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.1rem;
+        color: #e0b0ff;
+        font-weight: 500;
+      }
+
+      .song-info {
+        font-size: 0.85rem;
+        color: #9a80b8;
+        text-align: center;
+      }
+
+      .song-info span {
+        color: #d4b0f0;
+      }
+
+      /* ========== MAIN CONTENT ========== */
+      #main-content {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        padding: 40px 18px 80px;
+      }
+
+      #main-content.visible {
+        opacity: 1;
+      }
+
+      .container {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 45px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1s ease;
+      }
+
+      .header.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .header h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3.1rem;
+        color: #ffb8e0;
+        text-shadow: 0 0 25px rgba(255, 184, 224, 0.4);
+        margin-bottom: 6px;
+      }
+
+      .header .subtitle {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        color: #c9a0e8;
+        letter-spacing: 2px;
+      }
+
+      /* Gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 45px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1.2s ease 0.3s;
+      }
+
+      .gallery.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid rgba(224, 176, 255, 0.25);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        background: #1a0a2e;
+      }
+
+      /* Letter */
+      .letter-section {
+        background: linear-gradient(145deg, rgba(30, 15, 50, 0.9), rgba(20, 10, 35, 0.95));
+        border: 1px solid rgba(224, 176, 255, 0.2);
+        border-radius: 20px;
+        padding: 36px 24px;
+        margin-bottom: 40px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+        opacity: 0;
+        transform: translateY(25px);
+        transition: all 1.2s ease 0.5s;
+        position: relative;
+      }
+
+      .letter-section.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .letter-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #e0b0ff, #ffb8e0, #e0b0ff, transparent);
+      }
+
+      .letter-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2.3rem;
+        color: #ffb8e0;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .letter-body {
+        font-family: 'Caveat', cursive;
+        font-size: 1.4rem;
+        line-height: 1.7;
+        color: #f5e8ff;
+        white-space: pre-wrap;
+      }
+
+      .letter-body .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.3em;
+        background: #ffb8e0;
+        margin-left: 2px;
+        vertical-align: text-bottom;
+        animation: blink 0.8s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% { opacity: 0; }
+      }
+
+      /* After letter */
+      #after-letter {
+        text-align: center;
+        min-height: 180px;
+        margin: 25px 0 40px;
+      }
+
+      .fade-text {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        font-style: italic;
+        color: #e0b0ff;
+        opacity: 0;
+        transition: opacity 2s ease;
+        margin: 25px 0;
+        line-height: 1.6;
+      }
+
+      .fade-text.visible {
+        opacity: 1;
+      }
+
+      .special-photo {
+        max-width: 260px;
+        width: 80%;
+        margin: 28px auto;
+        border-radius: 16px;
+        border: 3px solid rgba(255, 184, 224, 0.4);
+        box-shadow: 0 10px 40px rgba(255, 184, 224, 0.2);
+        opacity: 0;
+        transform: scale(0.9);
+        transition: all 1.5s ease;
+        display: block;
+      }
+
+      .special-photo.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .final-greeting {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2.4rem;
+        color: #ffb8e0;
+        opacity: 0;
+        transition: opacity 1.8s ease;
+        margin: 28px 0;
+      }
+
+      .final-greeting.visible {
+        opacity: 1;
+      }
+
+      /* Memories */
+      .memories {
+        margin: 35px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1.2s ease 0.7s;
+      }
+
+      .memories.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .memories h3 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        color: #ffb8e0;
+        text-align: center;
+        margin-bottom: 18px;
+      }
+
+      .memory-card {
+        background: rgba(40, 20, 60, 0.65);
+        border: 1px solid rgba(224, 176, 255, 0.15);
+        border-radius: 14px;
+        padding: 16px 18px;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+        line-height: 1.55;
+        color: #e8d8f8;
+      }
+
+      .memory-card strong {
+        color: #ffb8e0;
+      }
+
+      /* Last button */
+      #last-button-wrap {
+        text-align: center;
+        margin: 50px 0 35px;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+      }
+
+      #last-button-wrap.visible {
+        opacity: 1;
+      }
+
+      #last-button {
+        background: linear-gradient(135deg, #c070e0, #ff80b0);
+        color: white;
+        border: none;
+        padding: 16px 38px;
+        font-size: 1.15rem;
+        font-family: 'Playfair Display', serif;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 8px 30px rgba(200, 100, 200, 0.4);
+        letter-spacing: 1px;
+      }
+
+      /* Final black screen */
+      #final-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1.2s ease, visibility 1.2s;
+      }
+
+      #final-screen.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .final-typing {
+        font-family: 'Caveat', cursive;
+        font-size: 1.6rem;
+        color: #ffb8e0;
+        text-align: center;
+        max-width: 90%;
+        line-height: 1.6;
+        padding: 0 15px;
+      }
+
+      .final-typing .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background: #ffb8e0;c
+        margin-left: 3px;
+        vertical-align: text-bottom;
+        animation: blink 0.8s step-end infinite;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.85rem;
+        color: #8a70a8;
+        opacity: 0;
+        transition: opacity 1.5s ease 1s;
+      }
+
+      .footer.show {z
+        opacity: 1;
+      }
+
+      @media (max-width: 480px) {
+        .header h1 { font-size: 2.5rem; }
+        .letter-body { font-size: 1.25rem; }
+        .gallery img { height: 170px; }
+        .final-greeting { font-size: 2rem; }
+        .final-typing { font-size: 1.35rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stars-container" id="stars">
+      <div
+        class="star"
+        style="
+          width: 1.58919px;
+          height: 1.58919px;
+          left: 17.1416%;
+          top: 40.3231%;
+          --duration: 5.865375079583005s;
+          --opacity: 0.952803126835498;
+          animation-delay: 3.82192s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.5184px;
+          height: 1.5184px;
+          left: 31.6516%;
+          top: 12.6434%;
+          --duration: 2.7376075208662107s;
+          --opacity: 0.35042403758815155;
+          animation-delay: 2.02523s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.4563px;
+          height: 1.4563px;
+          left: 8.31004%;
+          top: 45.8957%;
+          --duration: 5.386432687106346s;
+          --opacity: 0.31530917096024635;
+          animation-delay: 0.701322s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.555428px;
+          height: 0.555428px;
+          left: 25.3369%;
+          top: 50.4051%;
+          --duration: 3.957675133051747s;
+          --opacity: 0.6846744164911178;
+          animation-delay: 2.37477s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.753253px;
+          height: 0.753253px;
+          left: 15.7207%;
+          top: 55.0559%;
+          --duration: 4.344777378329411s;
+          --opacity: 0.7233078192388325;
+          animation-delay: 3.57802s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.32978px;
+          height: 1.32978px;
+          left: 6.7231%;
+          top: 83.3467%;
+          --duration: 4.350434558521403s;
+          --opacity: 0.6774794579239363;
+          animation-delay: 1.84874s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.72033px;
+          height: 1.72033px;
+          left: 43.6489%;
+          top: 26.696%;
+          --duration: 4.18631832072387s;
+          --opacity: 0.8403955549594286;
+          animation-delay: 4.82388s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.23008px;
+          height: 1.23008px;
+          left: 37.6254%;
+          top: 88.716%;
+          --duration: 3.523837066032145s;
+          --opacity: 0.37684290636383594;
+          animation-delay: 3.72981s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.31097px;
+          height: 2.31097px;
+          left: 63.6818%;
+          top: 94.9994%;
+          --duration: 3.702513680483149s;
+          --opacity: 0.3743290585262886;
+          animation-delay: 3.27174s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.88789px;
+          height: 1.88789px;
+          left: 95.9201%;
+          top: 2.82841%;
+          --duration: 4.105219575211782s;
+          --opacity: 0.3276012357943669;
+          animation-delay: 1.02768s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.27177px;
+          height: 2.27177px;
+          left: 34.5369%;
+          top: 41.4838%;
+          --duration: 5.399596232602288s;
+          --opacity: 0.7678051889408695;
+          animation-delay: 4.29313s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.31675px;
+          height: 2.31675px;
+          left: 63.4902%;
+          top: 56.5825%;
+          --duration: 2.126645675350404s;
+          --opacity: 0.6030187160729978;
+          animation-delay: 0.895845s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.612092px;
+          height: 0.612092px;
+          left: 71.9687%;
+          top: 62.7216%;
+          --duration: 4.080693747737991s;
+          --opacity: 0.8233082945899817;
+          animation-delay: 0.86457s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.58189px;
+          height: 1.58189px;
+          left: 94.0708%;
+          top: 32.9476%;
+          --duration: 3.867417696111369s;
+          --opacity: 0.7035392843984252;
+          animation-delay: 1.76216s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.98737px;
+          height: 1.98737px;
+          left: 81.5962%;
+          top: 45.3537%;
+          --duration: 4.431224132702589s;
+          --opacity: 0.6326006139005493;
+          animation-delay: 1.51255s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.28445px;
+          height: 1.28445px;
+          left: 25.8052%;
+          top: 51.8967%;
+          --duration: 5.2394998995551205s;
+          --opacity: 0.9596762817562583;
+          animation-delay: 4.12944s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.17687px;
+          height: 2.17687px;
+          left: 82.3733%;
+          top: 65.8154%;
+          --duration: 2.3898917819486485s;
+          --opacity: 0.8975055753373584;
+          animation-delay: 0.468211s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.4624px;
+          height: 1.4624px;
+          left: 89.284%;
+          top: 29.3617%;
+          --duration: 5.219266859712279s;
+          --opacity: 0.586943197586253;
+          animation-delay: 0.192366s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.794053px;
+          height: 0.794053px;
+          left: 77.6451%;
+          top: 75.8957%;
+          --duration: 4.786584029134579s;
+          --opacity: 0.7683093655713032;
+          animation-delay: 1.20722s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.75488px;
+          height: 1.75488px;
+          left: 36.0246%;
+          top: 67.1995%;
+          --duration: 5.463881320616135s;
+          --opacity: 0.5142576139431762;
+          animation-delay: 4.00524s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.91394px;
+          height: 1.91394px;
+          left: 49.1876%;
+          top: 25.7736%;
+          --duration: 5.089389031710658s;
+          --opacity: 0.6680166025423186;
+          animation-delay: 1.87198s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.31611px;
+          height: 2.31611px;
+          left: 20.2381%;
+          top: 31.1119%;
+          --duration: 2.035914334957848s;
+          --opacity: 0.38267942421023426;
+          animation-delay: 3.8615s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.983185px;
+          height: 0.983185px;
+          left: 96.3702%;
+          top: 69.3893%;
+          --duration: 3.8280396583886205s;
+          --opacity: 0.6298145979586911;
+          animation-delay: 0.230835s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.5444px;
+          height: 2.5444px;
+          left: 97.8083%;
+          top: 80.3537%;
+          --duration: 4.142565212270524s;
+          --opacity: 0.33919378308870485;
+          animation-delay: 2.35821s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.99572px;
+          height: 1.99572px;
+          left: 36.5536%;
+          top: 11.3993%;
+          --duration: 5.827866718773568s;
+          --opacity: 0.9213440861513058;
+          animation-delay: 3.86516s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.12259px;
+          height: 2.12259px;
+          left: 53.8993%;
+          top: 4.46037%;
+          --duration: 2.049922104572796s;
+          --opacity: 0.6401540156309067;
+          animation-delay: 1.07698s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.30133px;
+          height: 1.30133px;
+          left: 2.90319%;
+          top: 57.2364%;
+          --duration: 5.5069975386435175s;
+          --opacity: 0.3563314903018312;
+          animation-delay: 2.7969s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.83707px;
+          height: 1.83707px;
+          left: 15.4021%;
+          top: 18.2541%;
+          --duration: 2.1660608338160885s;
+          --opacity: 0.9542258829959243;
+          animation-delay: 1.63683s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.17639px;
+          height: 2.17639px;
+          left: 35.966%;
+          top: 36.609%;
+          --duration: 5.396112978226079s;
+          --opacity: 0.9861512713078007;
+          animation-delay: 0.0285127s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.32746px;
+          height: 1.32746px;
+          left: 7.38182%;
+          top: 1.65472%;
+          --duration: 4.112083825132681s;
+          --opacity: 0.4971039279494847;
+          animation-delay: 2.80064s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.85957px;
+          height: 1.85957px;
+          left: 20.1621%;
+          top: 73.1271%;
+          --duration: 5.1931541220421575s;
+          --opacity: 0.6911931387577619;
+          animation-delay: 1.65864s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.612249px;
+          height: 0.612249px;
+          left: 19.5262%;
+          top: 33.8396%;
+          --duration: 2.279887546868415s;
+          --opacity: 0.895217471853244;
+          animation-delay: 0.0507202s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.682019px;
+          height: 0.682019px;
+          left: 24.7097%;
+          top: 0.485997%;
+          --duration: 4.165161261006686s;
+          --opacity: 0.41445904214758944;
+          animation-delay: 2.00678s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.526996px;
+          height: 0.526996px;
+          left: 23.9537%;
+          top: 21.9679%;
+          --duration: 2.9626384776298442s;
+          --opacity: 0.5558811006646905;
+          animation-delay: 2.07747s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.721465px;
+          height: 0.721465px;
+          left: 91.8661%;
+          top: 0.504723%;
+          --duration: 3.0076986577178717s;
+          --opacity: 0.6630870159468932;
+          animation-delay: 0.0725355s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.22811px;
+          height: 1.22811px;
+          left: 9.51798%;
+          top: 77.5014%;
+          --duration: 5.484884944047314s;
+          --opacity: 0.7372999512100084;
+          animation-delay: 1.62147s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.30483px;
+          height: 1.30483px;
+          left: 7.44587%;
+          top: 16.3468%;
+          --duration: 2.5100755210192722s;
+          --opacity: 0.6561659447435919;
+          animation-delay: 2.63586s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.717421px;
+          height: 0.717421px;
+          left: 31.6828%;
+          top: 20.4858%;
+          --duration: 5.148249092447749s;
+          --opacity: 0.6100866073985363;
+          animation-delay: 0.202706s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.5942px;
+          height: 2.5942px;
+          left: 74.6841%;
+          top: 52.0429%;
+          --duration: 3.330980135465016s;
+          --opacity: 0.9343159068317277;
+          animation-delay: 3.03999s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.83753px;
+          height: 1.83753px;
+          left: 70.1347%;
+          top: 39.2831%;
+          --duration: 3.9789294181262984s;
+          --opacity: 0.6751140294113123;
+          animation-delay: 0.430533s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.26248px;
+          height: 1.26248px;
+          left: 5.34761%;
+          top: 78.8563%;
+          --duration: 3.5376495280222415s;
+          --opacity: 0.7069807785891489;
+          animation-delay: 4.58616s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.28583px;
+          height: 1.28583px;
+          left: 34.1151%;
+          top: 80.7732%;
+          --duration: 2.3265195917001473s;
+          --opacity: 0.7082167342600056;
+          animation-delay: 1.00279s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.03409px;
+          height: 1.03409px;
+          left: 14.0603%;
+          top: 26.9054%;
+          --duration: 4.207777998365213s;
+          --opacity: 0.7113289173925057;
+          animation-delay: 3.56544s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.882518px;
+          height: 0.882518px;
+          left: 20.6176%;
+          top: 52.7101%;
+          --duration: 3.13558875635018s;
+          --opacity: 0.5669864215556402;
+          animation-delay: 4.30048s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.972112px;
+          height: 0.972112px;
+          left: 67.8429%;
+          top: 13.118%;
+          --duration: 4.895955556081509s;
+          --opacity: 0.9743486327175186;
+          animation-delay: 1.08948s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.77436px;
+          height: 1.77436px;
+          left: 54.2561%;
+          top: 81.8774%;
+          --duration: 4.613030627830522s;
+          --opacity: 0.314705435060802;
+          animation-delay: 0.134597s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.834976px;
+          height: 0.834976px;
+          left: 95.8867%;
+          top: 14.7703%;
+          --duration: 3.037902642080717s;
+          --opacity: 0.7671115900472301;
+          animation-delay: 1.29739s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.45752px;
+          height: 2.45752px;
+          left: 4.6082%;
+          top: 36.6892%;
+          --duration: 2.350605820573072s;
+          --opacity: 0.5269222187542911;
+          animation-delay: 0.935722s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.67966px;
+          height: 2.67966px;
+          left: 36.9749%;
+          top: 37.0671%;
+          --duration: 4.341975816681918s;
+          --opacity: 0.7762817668201449;
+          animation-delay: 1.71781s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.84216px;
+          height: 1.84216px;
+          left: 87.1878%;
+          top: 96.3612%;
+          --duration: 4.309326594167322s;
+          --opacity: 0.9571015695547755;
+          animation-delay: 3.63863s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.32736px;
+          height: 2.32736px;
+          left: 85.5553%;
+          top: 68.0762%;
+          --duration: 5.830691420599111s;
+          --opacity: 0.6608219579231103;
+          animation-delay: 2.06756s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.1984px;
+          height: 2.1984px;
+          left: 32.3807%;
+          top: 66.704%;
+          --duration: 2.1091181456045267s;
+          --opacity: 0.3380725276286324;
+          animation-delay: 3.68269s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.98693px;
+          height: 1.98693px;
+          left: 64.7103%;
+          top: 81.8779%;
+          --duration: 2.924370536079144s;
+          --opacity: 0.7061011659098972;
+          animation-delay: 4.6601s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.31419px;
+          height: 1.31419px;
+          left: 53.9806%;
+          top: 56.4729%;
+          --duration: 5.092373734299835s;
+          --opacity: 0.5177174724793471;
+          animation-delay: 3.88147s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.56718px;
+          height: 2.56718px;
+          left: 73.052%;
+          top: 42.2908%;
+          --duration: 4.012799784833135s;
+          --opacity: 0.3598295128349646;
+          animation-delay: 3.3771s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.606029px;
+          height: 0.606029px;
+          left: 27.3964%;
+          top: 65.7203%;
+          --duration: 4.3969378009212114s;
+          --opacity: 0.38158369797943287;
+          animation-delay: 4.31878s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.15313px;
+          height: 1.15313px;
+          left: 93.5801%;
+          top: 87.641%;
+          --duration: 5.83949865097939s;
+          --opacity: 0.8543201556722579;
+          animation-delay: 0.910597s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.7358px;
+          height: 1.7358px;
+          left: 29.6501%;
+          top: 8.53818%;
+          --duration: 4.966553307886002s;
+          --opacity: 0.3110642425772244;
+          animation-delay: 4.8847s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.750349px;
+          height: 0.750349px;
+          left: 89.3228%;
+          top: 68.1973%;
+          --duration: 4.392138246335744s;
+          --opacity: 0.7960227476913306;
+          animation-delay: 3.09322s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.25113px;
+          height: 1.25113px;
+          left: 99.4753%;
+          top: 17.7748%;
+          --duration: 5.497072659903649s;
+          --opacity: 0.6833296809799565;
+          animation-delay: 3.606s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.43377px;
+          height: 1.43377px;
+          left: 36.2895%;
+          top: 91.8783%;
+          --duration: 3.8220426528127343s;
+          --opacity: 0.7157666726033698;
+          animation-delay: 2.47505s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.797899px;
+          height: 0.797899px;
+          left: 45.7903%;
+          top: 47.2889%;
+          --duration: 4.617511370284825s;
+          --opacity: 0.44521464434450597;
+          animation-delay: 3.81099s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.831556px;
+          height: 0.831556px;
+          left: 65.4636%;
+          top: 33.7431%;
+          --duration: 3.8348686284622646s;
+          --opacity: 0.32718681192346005;
+          animation-delay: 0.284975s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.26125px;
+          height: 1.26125px;
+          left: 70.0355%;
+          top: 38.5029%;
+          --duration: 4.12472906718294s;
+          --opacity: 0.8878371317650013;
+          animation-delay: 3.10396s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.32694px;
+          height: 2.32694px;
+          left: 56.3692%;
+          top: 89.9703%;
+          --duration: 2.405502769223151s;
+          --opacity: 0.9679085281080535;
+          animation-delay: 0.151957s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.3997px;
+          height: 1.3997px;
+          left: 32.3827%;
+          top: 21.1781%;
+          --duration: 5.87921383263161s;
+          --opacity: 0.39998970589898813;
+          animation-delay: 1.85587s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.46915px;
+          height: 1.46915px;
+          left: 49.2754%;
+          top: 98.9229%;
+          --duration: 5.10010858213044s;
+          --opacity: 0.7051837847403282;
+          animation-delay: 4.44334s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.08319px;
+          height: 2.08319px;
+          left: 61.7301%;
+          top: 4.35341%;
+          --duration: 4.765395545325006s;
+          --opacity: 0.9153681140888088;
+          animation-delay: 4.91117s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.4125px;
+          height: 1.4125px;
+          left: 71.3606%;
+          top: 70.345%;
+          --duration: 3.0074975779182367s;
+          --opacity: 0.41027503051046177;
+          animation-delay: 2.32925s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.65963px;
+          height: 1.65963px;
+          left: 15.4883%;
+          top: 38.5069%;
+          --duration: 4.770172109897499s;
+          --opacity: 0.5012921553905597;
+          animation-delay: 2.85197s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.928058px;
+          height: 0.928058px;
+          left: 56.2306%;
+          top: 45.3361%;
+          --duration: 2.065717228179117s;
+          --opacity: 0.3116667820050929;
+          animation-delay: 0.0840486s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.63453px;
+          height: 1.63453px;
+          left: 32.7838%;
+          top: 0.233758%;
+          --duration: 2.88223171303959s;
+          --opacity: 0.43400183104129914;
+          animation-delay: 4.84703s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.80106px;
+          height: 1.80106px;
+          left: 18.4601%;
+          top: 34.071%;
+          --duration: 4.378523668230513s;
+          --opacity: 0.3910579686020722;
+          animation-delay: 4.76478s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.589612px;
+          height: 0.589612px;
+          left: 69.7566%;
+          top: 31.2983%;
+          --duration: 4.946194737100873s;
+          --opacity: 0.5342240272398837;
+          animation-delay: 3.91682s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.58316px;
+          height: 2.58316px;
+          left: 90.4078%;
+          top: 15.9279%;
+          --duration: 2.7052738904067435s;
+          --opacity: 0.38342057169961985;
+          animation-delay: 3.23477s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.21298px;
+          height: 2.21298px;
+          left: 80.81%;
+          top: 68.4115%;
+          --duration: 4.389810051949676s;
+          --opacity: 0.5032248578652307;
+          animation-delay: 1.24562s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.516503px;
+          height: 0.516503px;
+          left: 23.3835%;
+          top: 41.9506%;
+          --duration: 3.6298013959366684s;
+          --opacity: 0.7494848169246437;
+          animation-delay: 0.0246281s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.79479px;
+          height: 1.79479px;
+          left: 55.8734%;
+          top: 28.6438%;
+          --duration: 4.787655563049781s;
+          --opacity: 0.60164861103483;
+          animation-delay: 0.867773s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.52779px;
+          height: 1.52779px;
+          left: 98.2319%;
+          top: 31.4893%;
+          --duration: 5.7479844177387935s;
+          --opacity: 0.3783975886172417;
+          animation-delay: 0.76793s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.68525px;
+          height: 2.68525px;
+          left: 0.942689%;
+          top: 99.1527%;
+          --duration: 3.9898443493353573s;
+          --opacity: 0.6894952128479332;
+          animation-delay: 0.579249s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.12835px;
+          height: 2.12835px;
+          left: 52.816%;
+          top: 6.41668%;
+          --duration: 3.7070036498249492s;
+          --opacity: 0.9271062505593144;
+          animation-delay: 0.749732s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.12326px;
+          height: 2.12326px;
+          left: 43.2483%;
+          top: 81.6987%;
+          --duration: 5.51131899320508s;
+          --opacity: 0.5283518747659417;
+          animation-delay: 0.539752s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.63482px;
+          height: 1.63482px;
+          left: 8.44763%;
+          top: 78.2099%;
+          --duration: 5.602175684687969s;
+          --opacity: 0.885471346502569;
+          animation-delay: 4.58082s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.745934px;
+          height: 0.745934px;
+          left: 1.29737%;
+          top: 39.5788%;
+          --duration: 3.967554563846676s;
+          --opacity: 0.7658825928640085;
+          animation-delay: 0.822049s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.7894px;
+          height: 1.7894px;
+          left: 66.1504%;
+          top: 59.6173%;
+          --duration: 2.490344765358513s;
+          --opacity: 0.9679241308584019;
+          animation-delay: 1.62615s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.59634px;
+          height: 2.59634px;
+          left: 24.2249%;
+          top: 35.3133%;
+          --duration: 2.4820975478886877s;
+          --opacity: 0.8070197290221304;
+          animation-delay: 1.54832s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.52811px;
+          height: 1.52811px;
+          left: 86.6216%;
+          top: 24.8355%;
+          --duration: 3.619680899699288s;
+          --opacity: 0.4157978500462115;
+          animation-delay: 4.30888s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.67523px;
+          height: 2.67523px;
+          left: 11.477%;
+          top: 63.0155%;
+          --duration: 3.9477031264991904s;
+          --opacity: 0.4643045037753607;
+          animation-delay: 1.21614s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.52254px;
+          height: 2.52254px;
+          left: 32.4311%;
+          top: 80.829%;
+          --duration: 3.9376541784167407s;
+          --opacity: 0.7030901055343324;
+          animation-delay: 3.77323s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.40326px;
+          height: 1.40326px;
+          left: 51.0163%;
+          top: 96.2082%;
+          --duration: 3.8460566992571654s;
+          --opacity: 0.9292414437919427;
+          animation-delay: 4.70198s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.871901px;
+          height: 0.871901px;
+          left: 72.94%;
+          top: 20.2005%;
+          --duration: 5.691488680311711s;
+          --opacity: 0.5042942136377042;
+          animation-delay: 2.47842s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.38025px;
+          height: 1.38025px;
+          left: 78.0923%;
+          top: 79.7131%;
+          --duration: 5.723312660504131s;
+          --opacity: 0.5116244892445769;
+          animation-delay: 1.70463s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.807139px;
+          height: 0.807139px;
+          left: 36.9731%;
+          top: 71.8914%;
+          --duration: 5.12640809412002s;
+          --opacity: 0.986263102312692;
+          animation-delay: 0.940629s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.42474px;
+          height: 1.42474px;
+          left: 19.1428%;
+          top: 26.8053%;
+          --duration: 2.9064540363228373s;
+          --opacity: 0.39723214309619065;
+          animation-delay: 3.87431s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.13314px;
+          height: 1.13314px;
+          left: 17.8971%;
+          top: 51.3629%;
+          --duration: 4.786972724098312s;
+          --opacity: 0.3011299389333045;
+          animation-delay: 4.412s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.02072px;
+          height: 1.02072px;
+          left: 11.9571%;
+          top: 14.3937%;
+          --duration: 4.484950640921053s;
+          --opacity: 0.4584889928670689;
+          animation-delay: 4.25866s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.09764px;
+          height: 1.09764px;
+          left: 47.9912%;
+          top: 57.137%;
+          --duration: 3.4009119723425143s;
+          --opacity: 0.9098164621977645;
+          animation-delay: 4.63175s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.06668px;
+          height: 2.06668px;
+          left: 75.776%;
+          top: 12.968%;
+          --duration: 2.7249003943682357s;
+          --opacity: 0.9141955046734489;
+          animation-delay: 4.42158s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.67118px;
+          height: 1.67118px;
+          left: 36.3134%;
+          top: 36.591%;
+          --duration: 3.283921456381385s;
+          --opacity: 0.49489315863842437;
+          animation-delay: 0.925746s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.502611px;
+          height: 0.502611px;
+          left: 29.2281%;
+          top: 4.22382%;
+          --duration: 4.858056596859461s;
+          --opacity: 0.8586702626382183;
+          animation-delay: 2.20845s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.30318px;
+          height: 2.30318px;
+          left: 86.5043%;
+          top: 75.438%;
+          --duration: 2.0694997801333996s;
+          --opacity: 0.43033026092625787;
+          animation-delay: 0.299021s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.64726px;
+          height: 1.64726px;
+          left: 67.7778%;
+          top: 35.7728%;
+          --duration: 3.38531106606537s;
+          --opacity: 0.953743973588917;
+          animation-delay: 3.56901s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.4173px;
+          height: 2.4173px;
+          left: 66.8763%;
+          top: 66.3954%;
+          --duration: 4.126107482747407s;
+          --opacity: 0.4707151406042115;
+          animation-delay: 3.87957s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.808181px;
+          height: 0.808181px;
+          left: 72.3303%;
+          top: 97.5508%;
+          --duration: 5.991146702444361s;
+          --opacity: 0.6926063331229617;
+          animation-delay: 1.99867s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.41826px;
+          height: 1.41826px;
+          left: 68.3419%;
+          top: 45.7826%;
+          --duration: 4.31766637750818s;
+          --opacity: 0.6662715092904283;
+          animation-delay: 1.24366s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.4928px;
+          height: 2.4928px;
+          left: 0.346639%;
+          top: 2.78487%;
+          --duration: 5.309691891347567s;
+          --opacity: 0.9461797953048832;
+          animation-delay: 0.604819s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 2.18869px;
+          height: 2.18869px;
+          left: 50.4234%;
+          top: 87.4498%;
+          --duration: 2.272362137720314s;
+          --opacity: 0.36847789883164156;
+          animation-delay: 1.64789s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 1.33072px;
+          height: 1.33072px;
+          left: 52.4728%;
+          top: 3.24417%;
+          --duration: 2.2465937067526847s;
+          --opacity: 0.384247443334513;
+          animation-delay: 2.87688s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.96637px;
+          height: 0.96637px;
+          left: 46.3607%;
+          top: 51.9156%;
+          --duration: 3.6682744365453743s;
+          --opacity: 0.6543428562333418;
+          animation-delay: 0.0891747s;
+        "
+      ></div>
+      <div
+        class="star"
+        style="
+          width: 0.792561px;
+          height: 0.792561px;
+          left: 84.4012%;
+          top: 19.6909%;
+          --duration: 5.866325038106s;
+          --opacity: 0.9859429211333848;
+          animation-delay: 3.99588s;
+        "
+      ></div>
+    </div>
+
+    <!-- LOCK SCREEN -->
+    <div id="lock-screen">
+      <div class="lock-icon">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M12 1C8.676 1 6 3.676 6 7v2H4v14h16V9h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v2H8V7c0-2.276 1.724-4 4-4zm0 10c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
+          ></path>
+        </svg>
+      </div>
+      <div class="lock-title">For Kanoi</div>
+      <div class="lock-subtitle">A little something made just for you ❤️</div>
+
+      <button id="start-btn">Tap to Open ❤️</button>
+
+      <div class="progress-area" id="progress-area">
+        <div class="progress-ring">
+          <svg width="80" height="80">
+            <circle class="progress-bg" cx="40" cy="40" r="32"></circle>
+            <circle
+              class="progress-bar"
+              id="progress-circle"
+              cx="40"
+              cy="40"
+              r="32"
+            ></circle>
+          </svg>
+          <div class="timer-text" id="timer">35</div>
+        </div>
+        <div class="song-info">
+          Now playing:<br /><span>Hit &amp; Run – Shenseea</span>
+        </div>
+        <div
+          id="audio-status"
+          style="
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: #c9a0e8;
+            text-align: center;
+            min-height: 20px;
+          "
+        ></div>
+        <button
+          id="force-play"
+          style="
+            display: none;
+            margin-top: 12px;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 25px;
+            background: #ff80b0;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+          "
+        >
+          🔊 Tap here if no sound
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+      <div class="container">
+        <div class="header" id="header">
+          <h1>Kanoi ❤️</h1>
+          <div class="subtitle">Happy Girlfriend's Day</div>
+        </div>
+
+        <div class="gallery" id="gallery">
+          <img src="images/photo 1.jpeg" alt="Kanoi" loading="eager" />
+          <img src="images/photo 2.jpeg" alt="Kanoi" loading="eager" />
+          <img src="images/photo 3.jpeg" alt="Kanoi" loading="eager" />
+          <img src="images/photo 4.jpeg" alt="Kanoi" loading="eager" />
+          <img src="images/photo 5.jpeg" alt="Kanoi" loading="eager" />
+          <img src="images/photo 6.jpeg" alt="Kanoi" loading="eager" />
+        </div>
+
+        <div class="letter-section" id="letter-section">
+          <div class="letter-title">The Letter</div>
+          <div class="letter-body" id="letter-body"></div>
+        </div>
+
+        <div id="after-letter">
+          <div class="fade-text" id="universe-text">
+            In every lifetime, in every universe,<br />I'd still find my way
+            back to you. ❤️
+          </div>
+          <img
+            src="images/photo 7.jpeg"
+            alt="Kanoi"
+            class="special-photo"
+            id="special-photo"
+          />
+          <div class="final-greeting" id="final-greeting">
+            Happy Girlfriend's Day, Beautiful. 🌹
+          </div>
+        </div>
+
+        <div class="memories" id="memories">
+          <h3>Little Things I Love</h3>
+          <div class="memory-card">
+            <strong>Since 9th May 2024</strong> — the day everything started
+            feeling brighter.
+          </div>
+          <div class="memory-card">
+            Watching Arsenal matches together while you fed me popcorn... those
+            quiet, perfect moments.
+          </div>
+          <div class="memory-card">
+            You always say you're stronger than me, yet I still end up carrying
+            you every day 😏
+          </div>
+          <div class="memory-card">
+            When you refuse the sofa and choose to lay on me instead — best
+            decision ever.
+          </div>
+          <div class="memory-card">
+            Even on the tough days, you're always on my side. A fighter for us.
+            That means everything.
+          </div>
+        </div>
+
+        <div id="last-button-wrap">
+          <button id="last-button">One Last Click... ❤️</button>
+        </div>
+
+        <div class="footer" id="footer">
+          Made with love, only for you · Midnight Stars
+        </div>
+      </div>
+    </div>
+
+    <!-- Final screen -->
+    <div id="final-screen">
+      <div class="final-typing" id="final-typing"></div>
+    </div>
+
+    <!-- Audio -->
+    <audio id="hit-run" src="audio/HIT & RUN.mpeg" preload="auto"></audio>
+    <audio
+      id="morning-song"
+      src="audio/WITH YOU INTHE MORNING.mpeg"
+      preload="auto"
+      loop=""
+    ></audio>
+
+    <script>
+      // Stars
+      const starsContainer = document.getElementById("stars");
+      for (let i = 0; i < 110; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        const size = Math.random() * 2.2 + 0.5;
+        star.style.width = size + "px";
+        star.style.height = size + "px";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.setProperty("--duration", Math.random() * 4 + 2 + "s");
+        star.style.setProperty("--opacity", Math.random() * 0.7 + 0.3);
+        star.style.animationDelay = Math.random() * 5 + "s";
+        starsContainer.appendChild(star);
+      }
+
+      const lockScreen = document.getElementById("lock-screen");
+      const startBtn = document.getElementById("start-btn");
+      const progressArea = document.getElementById("progress-area");
+      const hitRun = document.getElementById("hit-run");
+      const morningSong = document.getElementById("morning-song");
+      const progressCircle = document.getElementById("progress-circle");
+      const timerEl = document.getElementById("timer");
+
+      const LOCK_DURATION = 35;
+      const circumference = 2 * Math.PI * 32; // ~201
+
+      const audioStatus = document.getElementById("audio-status");
+      const forcePlayBtn = document.getElementById("force-play");
+
+      function tryPlayHitRun() {
+        hitRun.volume = 1.0;
+        hitRun.muted = false;
+        hitRun.currentTime = 0;
+
+        const playPromise = hitRun.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              audioStatus.textContent = "🔊 Music is playing...";
+              forcePlayBtn.style.display = "none";
+            })
+            .catch((err) => {
+              audioStatus.textContent =
+                "⚠️ Sound blocked – tap the button below";
+              forcePlayBtn.style.display = "inline-block";
+              console.log("Play blocked:", err);
+            });
+        }
+      }
+
+      startBtn.addEventListener("click", function () {
+        startBtn.style.display = "none";
+        progressArea.classList.add("active");
+
+        tryPlayHitRun();
+
+        let timeLeft = LOCK_DURATION;
+        timerEl.textContent = timeLeft;
+
+        const interval = setInterval(() => {
+          timeLeft--;
+          timerEl.textContent = timeLeft;
+          const offset =
+            circumference - (timeLeft / LOCK_DURATION) * circumference;
+          progressCircle.style.strokeDashoffset = offset;
+
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            unlock();
+          }
+        }, 1000);
+      });
+
+      forcePlayBtn.addEventListener("click", function () {
+        tryPlayHitRun();
+      });
+
+      function unlock() {
+        hitRun.pause();
+        hitRun.currentTime = 0;
+
+        lockScreen.classList.add("hidden");
+
+        // Try to play the second song (only works if with-you.mp3 exists)
+        morningSong.volume = 0.7;
+        morningSong.muted = false;
+        morningSong.play().catch(() => {
+          console.log("Background song not found or blocked");
+        });
+
+        const main = document.getElementById("main-content");
+        main.classList.add("visible");
+
+        setTimeout(
+          () => document.getElementById("header").classList.add("show"),
+          400,
+        );
+        setTimeout(
+          () => document.getElementById("gallery").classList.add("show"),
+          700,
+        );
+        setTimeout(() => {
+          document.getElementById("letter-section").classList.add("show");
+          typeLetter();
+        }, 1100);
+      }
+
+      // Typewriter letter
+      const letterText = `My Dearest Love, ❤️
+
+Happy Girlfriend's Day, my beautiful.
+
+Before you read anything else, I just want you to know that this wasn't made by a website template or copied from somewhere. Every second you spend here is something I wanted to create just for you because you're someone incredibly special to me.
+
+Sometimes I sit and wonder how someone could come into my life and make ordinary days feel extraordinary. Then I remember you.
+
+Thank you for your smile that somehow manages to brighten even my darkest days. Thank you for your kindness, your patience, your laughter, and for simply being you. You have a way of making life feel lighter, and I hope you never forget how much that means to me.
+
+Loving you isn't about grand gestures or perfect moments. It's about choosing you in the little things, every single day. It's about wanting to hear your voice after a long day, smiling whenever your name pops up on my phone, and finding comfort in knowing you're part of my life.
+
+If I could give you one gift today, it wouldn't be flowers that eventually fade or chocolates that disappear. I'd give you the ability to see yourself through my eyes, so you'd know just how beautiful, strong, and amazing you truly are.
+
+I don't know what tomorrow holds, but I do know this: I'll keep appreciating you, praying for you, supporting you, and doing my best to make you smile.
+
+Thank you for every memory we've made together, and for the countless ones that are still waiting for us.
+
+As you close this little letter, I hope one thing stays with you:
+
+You are loved. Deeply. Genuinely. Completely.
+
+Happy Girlfriend's Day, my love.
+
+Forever and always,
+Mwenda ❤️`;
+
+      function typeLetter() {
+        const el = document.getElementById("letter-body");
+        let i = 0;
+        const speed = 26;
+
+        function type() {
+          if (i < letterText.length) {
+            el.innerHTML =
+              letterText.substring(0, i + 1) + '<span class="cursor"></span>';
+            i++;
+            setTimeout(type, speed);
+          } else {
+            el.innerHTML = letterText;
+            setTimeout(afterLetterSequence, 3000);
+          }
+        }
+        type();
+      }
+
+      function afterLetterSequence() {
+        document.getElementById("universe-text").classList.add("visible");
+
+        setTimeout(() => {
+          document.getElementById("special-photo").classList.add("visible");
+        }, 2500);
+
+        setTimeout(() => {
+          document.getElementById("final-greeting").classList.add("visible");
+        }, 4500);
+
+        setTimeout(() => {
+          document.getElementById("memories").classList.add("show");
+          document.getElementById("last-button-wrap").classList.add("visible");
+          document.getElementById("footer").classList.add("show");
+        }, 6500);
+      }
+
+      // One Last Click
+      document.getElementById("last-button").addEventListener("click", () => {
+        morningSong.pause();
+        const finalScreen = document.getElementById("final-screen");
+        finalScreen.classList.add("visible");
+
+        const finalText = `By the way...
+I fell in love with you a little more while making this. ❤️`;
+
+        const el = document.getElementById("final-typing");
+        let i = 0;
+
+        function typeFinal() {
+          if (i < finalText.length) {
+            el.innerHTML =
+              finalText.substring(0, i + 1) + '<span class="cursor"></span>';
+            i++;
+            setTimeout(typeFinal, 55);
+          } else {
+            el.innerHTML = finalText;
+          }
+        }
+        setTimeout(typeFinal, 700);
+      });
+    </script>
+  </body>
+</html>
